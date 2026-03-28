@@ -56,11 +56,11 @@ header.scrolled{
 }
 .header-inner{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 60px;height:78px;
+  padding:0 60px;height:90px;
   border-bottom:1px solid rgba(200,169,110,0.12);
 }
 .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo-img{height:44px;width:auto;object-fit:contain;filter:brightness(1.05)}
+.logo-img{height:64px;width:auto;object-fit:contain;filter:brightness(1.05)}
 .logo-text{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:#fff;letter-spacing:.02em;line-height:1.2}
 .logo-text span{color:var(--gold);font-style:italic}
 nav{display:flex;align-items:center;gap:36px}
@@ -600,7 +600,7 @@ footer{background:var(--black);padding:70px 60px 36px;color:rgba(255,255,255,.5)
 <header id="header">
   <div class="header-inner">
     <a href="#home" class="logo-wrap">
-      <img src="https://raw.githubusercontent.com/Meckai/SBB/main/log-bg.png" alt="Studio de Beleza Brasil By Madson Soares" class="logo-img" style="height:58px;">
+      <img src="https://raw.githubusercontent.com/Meckai/SBB/main/log-bg.png" alt="Studio de Beleza Brasil By Madson Soares" class="logo-img">
       <span class="logo-text">Studio de <span>Beleza Brasil</span><br><small style="font-size:.65em;font-weight:300;color:rgba(255,255,255,.6);letter-spacing:.1em">By Madson Soares</small></span>
     </a>
     <nav id="nav">
@@ -621,9 +621,9 @@ footer{background:var(--black);padding:70px 60px 36px;color:rgba(255,255,255,.5)
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
-    <source src="https://cdn.jsdelivr.net/gh/Meckai/SBB@main/hero.mp4" type="video/mp4">
-    <source src="https://cdn.jsdelivr.net/gh/Meckai/SBB@main/hero-header-apresentaçao.mov" type="video/quicktime">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+    <source src="./hero.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/Meckai/SBB/main/hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
