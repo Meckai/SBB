@@ -1121,7 +1121,9 @@ document.querySelectorAll('.nav-link,.nav-cta').forEach(l=>l.addEventListener('c
 const hv = document.getElementById('heroVideo');
 hv.addEventListener('loadeddata',()=>hv.classList.add('loaded'));
 hv.addEventListener('canplay',()=>hv.classList.add('loaded'));
-setTimeout(()=>hv.classList.add('loaded'),1000);
+hv.addEventListener('playing',()=>hv.classList.add('loaded'));
+hv.load();
+setTimeout(()=>hv.classList.add('loaded'),300);
 
 // ── GALLERY FILTER ──
 document.querySelectorAll('.gtab').forEach(tab=>{
