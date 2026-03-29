@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Studio de Beleza Brasil — Referência em salão de beleza, estética e bronzeamento em Belém, PA.">
+  <title>Studio de Beleza Brasil | Abertura</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-family='serif'>✨</text></svg>">
+
+  <style>
+    .landing-hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .landing-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2.5s ease;
+    }
+
+    .landing-video.loaded {
+      opacity: 0.55;
+    }
+
+    .landing-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.15) 40%, rgba(10,10,10,0.7) 100%);
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px;
+      max-width: 900px;
+      color: #fff;
+    }
+
+    .landing-text {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .landing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 20px 0 40px;
+      color: #fff;
+    }
+
+    .landing-subtitle {
+      font-family: 'Jost', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #faf7f2;
+      margin-bottom: 50px;
+    }
+
+    .landing-cta {
+      display: inline-block;
+      background: #c8a96e;
+      color: #0a0a0a;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .landing-cta:hover {
+      background: #dfc08a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(200, 169, 110, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .landing-title {
+        font-size: 2.2rem;
+      }
+
+      .landing-subtitle {
+        font-size: 1rem;
+      }
+
+      .landing-content {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .landing-title {
+        font-size: 1.8rem;
+      }
+
+      .landing-subtitle {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="landing-hero">
+  <video class="landing-video" id="landing-video" autoplay muted loop playsinline>
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+  <div class="landing-overlay"></div>
+
+  <div class="landing-content" id="landing-content">
+    <!-- Text will be animated in by JS -->
+  </div>
+</section>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const landingContent = document.getElementById('landing-content');
+    const landingVideo = document.getElementById('landing-video');
+
+    const textPieces = [
+      { type: 'title', text: 'Studio de Beleza Brasil by Madson Soares' },
+      { type: 'subtitle', text: 'Pioneirismo e Referência em Beleza em Belém' },
+      { type: 'large-title', text: 'A Referência Absoluta em Beleza e Estética em Belém' },
+      { type: 'subtitle', text: 'Uma década não se conta em anos… se prova em resultados, autoridade e transformação real.<br><br>Madson Soares não construiu apenas um studio. Construiu um padrão. Um padrão onde estética não é vaidade — é posicionamento. Onde cada detalhe foi pensado para entregar sofisticação, segurança e impacto visual.<br><br><strong>Pioneiros em Bronzeamento Masculino</strong> • <strong>Especialistas em Estética Avançada</strong> • <strong>Padrão Internacional de Qualidade</strong>' },
+      { type: 'button', text: 'Conhecer nossos Serviços' }
+    ];
+
+    // Video loaded
+    landingVideo.addEventListener('loadeddata', function() {
+      landingVideo.classList.add('loaded');
+    });
+
+    landingVideo.play();
+
+    // Start animations after 2.5s
+    setTimeout(() => {
+      textPieces.forEach((piece, index) => {
+        setTimeout(() => {
+          let element;
+
+          if (piece.type === 'title') {
+            element = document.createElement('h1');
+            element.className = 'landing-text landing-title';
+            element.innerHTML = piece.text;
+          } else if (piece.type === 'large-title') {
+            element = document.createElement('h2');
+            element.className = 'landing-text landing-title';
+            element.style.fontSize = '2.5rem';
+            element.innerHTML = piece.text;
+          } else if (piece.type === 'subtitle') {
+            element = document.createElement('p');
+            element.className = 'landing-text landing-subtitle';
+            element.innerHTML = piece.text;
+          } else if (piece.type === 'button') {
+            element = document.createElement('a');
+            element.className = 'landing-text landing-cta';
+            element.href = 'servicos.html';
+            element.innerHTML = piece.text;
+            element.style.display = 'inline-block';
+          }
+
+          if (element) {
+            landingContent.appendChild(element);
+            element.style.animation = `fadeInUp 0.8s ease-out forwards`;
+          }
+        }, index * 400);
+      });
+    }, 2500);
+
+    // Cursor tracking
+    const cursor = document.querySelector('.cursor');
+    const cursorRing = document.querySelector('.cursor-ring');
+
+    if (cursor && cursorRing) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorRing.style.left = e.clientX + 'px';
+        cursorRing.style.top = e.clientY + 'px';
+      });
+
+      document.addEventListener('mousedown', () => {
+        cursor.classList.add('expanded');
+        cursorRing.classList.add('expanded');
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor.classList.remove('expanded');
+        cursorRing.classList.remove('expanded');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
